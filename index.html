@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charleston Fiberglass: Strategic Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: The application is structured into a full-featured marketing website with thematic, scrollable sections. The flow guides users through the brand story. 1. **Hero/Introduction:** Establishes brand and core philosophy. 2. **Our Expertise:** Tabbed section for core services. 3. **Why Fiberglass?:** A new section to educate customers on the material's benefits, which is a key part of the strategic report. 4. **Testimonials & Case Studies:** A new section to build trust through social proof. 5. **Market Advantage:** Interactive charts from the analysis. 6. **Strategic Vision:** Card-based USPs. 7. **FAQ:** A new section to proactively address customer concerns like cost. 8. **Final CTA:** A direct call to action. This structure moves from brand identity to service details, then to the core value of the material itself, and builds trust before presenting the competitive analysis and USPs, concluding with clear next steps. -->
+    <!-- Visualization & Content Choices: 1. **Core Philosophy (Hero):** Goal: Inform/Inspire. Method: Large, impactful text with Unicode icons. Interaction: None. Justification: Sets brand tone. 2. **Service Details (Tabs):** Goal: Organize/Inform. Method: HTML tabs with JS show/hide. Content from report sections. Interaction: Tab clicks. Justification: Efficiently separates complex service offerings. 3. **Competitive Analysis (Charts):** Goal: Compare. Method: Two Chart.js Bar Charts. Interaction: Tooltips. Justification: Visually translates complex competitive data into an easily digestible format. 4. **Why Fiberglass? & Testimonials:** Goal: Inform/Build Trust. Method: Rich HTML content with lists and card-based testimonials. Interaction: None. Justification: Educates the user and provides social proof, directly implementing recommendations from the strategic analysis. 5. **FAQ:** Goal: Inform/Reassure. Method: Accordion-style HTML/JS for common questions/answers. Interaction: Clicking to expand/collapse. Justification: Proactively addresses concerns like cost, reframing them as long-term value, as highlighted in the report. CONFIRMING NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #383838;
+        }
+        .nav-link {
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #A0522D;
+            border-bottom-color: #A0522D;
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            background-color: #A0522D;
+            color: #FFFFFF;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 60vh;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-[#A0522D]">Charleston Fiberglass</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#philosophy" class="nav-link">Our Philosophy</a>
+                <a href="#expertise" class="nav-link">Our Expertise</a>
+                <a href="#why-fiberglass" class="nav-link">Why Fiberglass?</a>
+                <a href="#advantage" class="nav-link">Market Advantage</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-2xl">☰</button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#philosophy" class="block py-2 nav-link">Our Philosophy</a>
+            <a href="#expertise" class="block py-2 nav-link">Our Expertise</a>
+            <a href="#why-fiberglass" class="block py-2 nav-link">Why Fiberglass?</a>
+            <a href="#advantage" class="block py-2 nav-link">Market Advantage</a>
+            <a href="#testimonials" class="block py-2 nav-link">Testimonials</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="philosophy" class="py-20 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <p class="text-lg text-[#A0522D] font-medium mb-2">A 15-Year Legacy of Craftsmanship</p>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Where Marine-Grade Expertise Meets Artistic Craftsmanship</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-12">
+                    At Charleston Fiberglass, we embody the core qualities of the material we master: **Strength, Versatility, and Artistry**. We are Charleston's trusted source for premium fiberglass solutions, delivering unrivaled durability and beauty for your boat and home.
+                </p>
+                <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                    <div class="p-6 bg-[#FDFBF8] rounded-lg shadow-sm">
+                        <span class="text-4xl">💪</span>
+                        <h3 class="text-xl font-bold mt-4 mb-2">Strength</h3>
+                        <p class="text-gray-600">Unmatched durability and structural integrity to withstand the harshest coastal environments, ensuring safety and longevity for your most valuable assets.</p>
+                    </div>
+                    <div class="p-6 bg-[#FDFBF8] rounded-lg shadow-sm">
+                        <span class="text-4xl">🎨</span>
+                        <h3 class="text-xl font-bold mt-4 mb-2">Artistry</h3>
+                        <p class="text-gray-600">Meticulous attention to detail, delivering flawless aesthetic finishes and custom creations that restore and enhance beauty.</p>
+                    </div>
+                    <div class="p-6 bg-[#FDFBF8] rounded-lg shadow-sm">
+                        <span class="text-4xl">🔄</span>
+                        <h3 class="text-xl font-bold mt-4 mb-2">Versatility</h3>
+                        <p class="text-gray-600">Adaptable solutions across a wide spectrum of applications, from complex boat restorations to expansive, custom-waterproofed decks.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="expertise" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                     <h2 class="text-4xl font-bold mb-4">Our Dual-Niche Expertise</h2>
+                     <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                        Our mastery spans two critical domains: marine craft and residential properties. This unique dual focus provides us with unparalleled expertise, allowing us to apply rigorous, marine-grade standards to every project.
+                     </p>
+                </div>
+                <div class="flex justify-center mb-8">
+                    <button id="tab-marine" class="tab-button active text-lg font-medium py-2 px-6 rounded-l-lg border border-gray-300">Marine Services</button>
+                    <button id="tab-decking" class="tab-button text-lg font-medium py-2 px-6 rounded-r-lg border border-gray-300">Deck Waterproofing</button>
+                </div>
+
+                <div id="content-marine" class="tab-content">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h3 class="text-3xl font-bold mb-4">Boat Repair & Restoration</h3>
+                            <p class="text-gray-600 mb-6">We provide comprehensive services for marine vessels, addressing everything from minor gelcoat cracks to full structural restorations. Our artistry ensures repairs are not just functional but aesthetically flawless, restoring your vessel's original beauty and integrity.</p>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start"><span class="text-[#A0522D] mr-2">✓</span><span>**Extended Lifespan:** Prevents damage from spreading, prolonging your boat's operational life.</span></li>
+                                <li class="flex items-start"><span class="text-[#A0522D] mr-2">✓</span><span>**Safety & Performance:** Restores structural integrity for safe and efficient operation.</span></li>
+                                <li class="flex items-start"><span class="text-[#A0522D] mr-2">✓</span><span>**Aesthetic Perfection:** Seamless finishes that precisely match original colors and textures.</span></li>
+                                <li class="flex items-start"><span class="text-[#A0522D] mr-2">✓</span><span>**Cost-Effective:** Repair is significantly more economical than component replacement.</span></li>
+                            </ul>
+                        </div>
+                        <div class="p-6 bg-gray-100 rounded-lg shadow-lg">
+                             <div class="w-full h-80 bg-gray-300 rounded-md flex items-center justify-center text-gray-500 font-bold">
+                                Image Placeholder: Boat Restoration
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-decking" class="tab-content hidden">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h3 class="text-3xl font-bold mb-4">Waterproofing for Oceanfront Homes</h3>
+                            <p class="text-gray-600 mb-6">We apply our marine-grade expertise to protect your coastal home. Our fiberglass deck coatings provide a superior, long-term solution to the challenges of oceanfront environments, preventing wood rot and structural damage.</p>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start"><span class="text-[#A0522D] mr-2">✓</span><span>**20+ Year Lifespan:** A proactive, long-term investment in your property's protection.</span></li>
+                                <li class="flex items-start"><span class="text-[#A0522D] mr-2">✓</span><span>**Low Maintenance:** Resists rot, moisture, and pests, saving you time and money.</span></li>
+                                <li class="flex items-start"><span class="text-[#A0522D] mr-2">✓</span><span>**Increased Property Value:** An attractive, durable deck enhances your home's appeal and value.</span></li>
+                                <li class="flex items-start"><span class="text-[#A0522D] mr-2">✓</span><span>**Enhanced Safety:** Engineered for excellent slip resistance, protecting family and guests.</span></li>
+                            </ul>
+                        </div>
+                        <div class="p-6 bg-gray-100 rounded-lg shadow-lg">
+                            <div class="w-full h-80 bg-gray-300 rounded-md flex items-center justify-center text-gray-500 font-bold">
+                                Image Placeholder: Deck Waterproofing
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-fiberglass" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">Why Choose Fiberglass?</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                        Fiberglass offers a unique combination of strength, versatility, and durability that makes it the superior choice for both marine and residential applications in coastal environments. It is a strategic investment in your valuable assets.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="p-6 bg-[#FDFBF8] rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold mb-3">Superior Durability</h3>
+                        <p class="text-gray-600">Fiberglass provides exceptional structural integrity, withstanding saltwater, UV radiation, and heavy precipitation far better than traditional materials. Our decks last 20+ years.</p>
+                    </div>
+                    <div class="p-6 bg-[#FDFBF8] rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold mb-3">Long-Term Value</h3>
+                        <p class="text-gray-600">Opting for fiberglass is a proactive investment. Its long lifespan and low maintenance requirements mean significant cost savings over time compared to wood.</p>
+                    </div>
+                    <div class="p-6 bg-[#FDFBF8] rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold mb-3">Custom Creations</h3>
+                        <p class="text-gray-600">The versatility of fiberglass allows for extensive customization, from seamless repairs that match original designs to bespoke components for unique projects.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="testimonials" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">What Our Clients Say</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                        Our reputation is built on a 15-year legacy of exceptional quality and client trust. Hear directly from those who've experienced the Charleston Fiberglass difference.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="p-8 bg-white rounded-lg shadow-md border-t-4 border-[#A0522D]">
+                        <p class="text-gray-600 italic">"The team not only restored my boat to its original condition but did it with an attention to detail I can only describe as artistry. They truly mastered the craft."</p>
+                        <p class="mt-4 font-bold text-gray-800">- Mark S., Boat Owner</p>
+                    </div>
+                    <div class="p-8 bg-white rounded-lg shadow-md border-t-4 border-[#A0522D]">
+                        <p class="text-gray-600 italic">"Our new fiberglass deck is a game-changer. It looks fantastic and gives us such peace of mind against the coastal weather. This was a smart investment."</p>
+                        <p class="mt-4 font-bold text-gray-800">- The Miller Family, Oceanfront Homeowners</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="advantage" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">Our Competitive Advantage</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                        Our analysis shows a clear opportunity to lead through our dual expertise, deep local roots, and commitment to "marine-grade" quality in all our work. The charts below visualize our position relative to competitors.
+                    </p>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-16">
+                    <div>
+                        <h3 class="text-2xl font-bold text-center mb-4">Marine Services Competitive Landscape</h3>
+                        <div class="chart-container">
+                            <canvas id="marineChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-center mb-4">Deck Waterproofing Competitive Landscape</h3>
+                        <div class="chart-container">
+                            <canvas id="deckingChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="faq" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                        We're here to answer your questions and provide clarity on your project.
+                    </p>
+                </div>
+                <div class="max-w-3xl mx-auto space-y-4">
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                        <button class="flex justify-between items-center w-full text-lg font-bold text-left" onclick="toggleFAQ('faq1')">
+                            <span>Is the upfront cost of a fiberglass deck worth it?</span>
+                            <span id="faq1-icon" class="text-2xl">+</span>
+                        </button>
+                        <p id="faq1-content" class="mt-4 text-gray-600 hidden">
+                            While the initial cost can be higher than wood, a fiberglass deck is a superior long-term investment. With an exceptional 20+ year lifespan and minimal maintenance, the total cost of ownership is significantly lower over time. You save on the continuous expenses of sealing, staining, and major repairs common with wood decks.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                        <button class="flex justify-between items-center w-full text-lg font-bold text-left" onclick="toggleFAQ('faq2')">
+                            <span>What makes your marine expertise relevant for my home?</span>
+                            <span id="faq2-icon" class="text-2xl">+</span>
+                        </button>
+                        <p id="faq2-content" class="mt-4 text-gray-600 hidden">
+                            The marine environment is among the harshest for materials. We apply the same rigorous, marine-grade standards and techniques used to protect vessels in the ocean to your home's deck. This guarantees a level of durability and protection that other contractors cannot match.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                        <button class="flex justify-between items-center w-full text-lg font-bold text-left" onclick="toggleFAQ('faq3')">
+                            <span>Do you offer custom designs beyond standard repairs?</span>
+                            <span id="faq3-icon" class="text-2xl">+</span>
+                        </button>
+                        <p id="faq3-content" class="mt-4 text-gray-600 hidden">
+                            Absolutely. Our "Artistry" principle means we specialize in seamless restorations and custom creations. We can craft bespoke boat components, custom deck features, and other specialized composite projects to meet your specific vision.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold mb-4">Ready to Protect and Transform Your Assets?</h3>
+            <p class="mb-6">Don't wait for damage to happen. Contact Charleston Fiberglass today for a free consultation and discover a long-term solution.</p>
+            <a href="#" class="bg-[#A0522D] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#8B4513] transition-colors">Get a Personalized Quote</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (mobileMenu.offsetParent !== null) {
+                         mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            const tabMarine = document.getElementById('tab-marine');
+            const tabDecking = document.getElementById('tab-decking');
+            const contentMarine = document.getElementById('content-marine');
+            const contentDecking = document.getElementById('content-decking');
+
+            tabMarine.addEventListener('click', () => {
+                tabMarine.classList.add('active');
+                tabDecking.classList.remove('active');
+                contentMarine.classList.remove('hidden');
+                contentDecking.classList.add('hidden');
+            });
+
+            tabDecking.addEventListener('click', () => {
+                tabDecking.classList.add('active');
+                tabMarine.classList.remove('active');
+                contentDecking.classList.remove('hidden');
+                contentMarine.classList.add('hidden');
+            });
+
+            const chartOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#6b7280'
+                        },
+                        grid: {
+                            color: '#e5e7eb'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#6b7280'
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            color: '#374151'
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#374151',
+                        titleColor: '#ffffff',
+                        bodyColor: '#ffffff',
+                        callbacks: {
+                           label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += context.dataset.tooltips[context.dataIndex];
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            };
+            
+            const marineCtx = document.getElementById('marineChart').getContext('2d');
+            new Chart(marineCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Charleston Fiberglass', 'High and Dry', 'Hanckel Marine', 'Palmetto Marine'],
+                    datasets: [{
+                        label: 'Specialization Focus',
+                        data: [9, 8, 5, 7],
+                        backgroundColor: 'rgba(160, 82, 45, 0.7)',
+                        borderColor: 'rgba(160, 82, 45, 1)',
+                        borderWidth: 1,
+                        tooltips: ['Dual-niche mastery', 'Specialized composite shop', 'General dealership', 'High-end restoration focus']
+                    }, {
+                        label: 'Custom Capability',
+                        data: [8, 9, 4, 6],
+                        backgroundColor: 'rgba(210, 180, 140, 0.7)',
+                        borderColor: 'rgba(210, 180, 140, 1)',
+                        borderWidth: 1,
+                        tooltips: ['Artistry & custom creation', 'Can build anything', 'Custom rigging', 'Maintenance plans']
+                    }]
+                },
+                options: chartOptions
+            });
+
+            const deckingCtx = document.getElementById('deckingChart').getContext('2d');
+            new Chart(deckingCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Charleston Fiberglass', 'OC Fiberglass', 'RDT Contracting'],
+                    datasets: [{
+                        label: 'Local Presence',
+                        data: [10, 2, 8],
+                        backgroundColor: 'rgba(160, 82, 45, 0.7)',
+                        borderColor: 'rgba(160, 82, 45, 1)',
+                        borderWidth: 1,
+                        tooltips: ['Deep Charleston roots', 'Potentially non-local (NJ)', 'Local & regional presence']
+                    }, {
+                        label: 'Fiberglass Specialization',
+                        data: [10, 10, 6],
+                        backgroundColor: 'rgba(210, 180, 140, 0.7)',
+                        borderColor: 'rgba(210, 180, 140, 1)',
+                        borderWidth: 1,
+                        tooltips: ['Marine-grade fiberglass expert', 'Fiberglass deck specialist', 'General waterproofing methods']
+                    }]
+                },
+                options: chartOptions
+            });
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                const sections = document.querySelectorAll('main section');
+                const navLinks = document.querySelectorAll('header a.nav-link');
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            }, { passive: true });
+
+            window.toggleFAQ = function(id) {
+                const content = document.getElementById(id + '-content');
+                const icon = document.getElementById(id + '-icon');
+                content.classList.toggle('hidden');
+                icon.textContent = content.classList.contains('hidden') ? '+' : '–';
+            };
+        });
+    </script>
+</body>
+</html> 
