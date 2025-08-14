@@ -1,1 +1,19 @@
-charlestonfiberglass.com 
+Type: A
+Name: @
+Value: 185.199.108.153
+TTL: 600
+
+Type: A
+Name: @
+Value: 185.199.109.153
+TTL: 600
+
+Type: A
+Name: @
+Value: 185.199.110.153
+TTL: 600
+
+Type: A
+Name: @
+Value: 185.199.111.153
+TTL: 600 
